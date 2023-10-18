@@ -67,3 +67,38 @@ TxHash:  0xce9271aba30a6e68a36f3ce75690ea63e2258d7d9a1d2bb69d58b10ae4fd70d7
 ✨  Done in 15.47s.
 ```
 
+## Verify Contracts with api
+We have deployed the contract [SimpleCounterUser](./contracts/SimpleCounterUser.sol) at [https://zkatana.blockscout.com/address/0x00D76203b92ec96bB46d252e3A30660D6a9bD319](https://zkatana.blockscout.com/address/0x00D76203b92ec96bB46d252e3A30660D6a9bD319) and verified using axios post api call following the script [verify-api](./src/verify-api.ts).
+
+```typescript
+async function verify() {
+  let contractaddress = "0x00D76203b92ec96bB46d252e3A30660D6a9bD319";
+  axios
+    .post("https://zkatana.blockscout.com/api?module=contract&action=verify", {
+      addressHash: contractaddress,
+      compilerVersion: "v0.8.18+commit.87f61d96",
+      contractSourceCode: `// SPDX-License-Identifier: MIT
+      pragma solidity 0.8.18;
+      
+      contract SimpleCounterUser {
+          uint256 public counter;
+          mapping(address=> uint) public incrementsByUser;
+          event IncrementCounter(uint256 newCounterValue, address msgSender);
+      
+          function increment() external {
+              counter++;
+              incrementsByUser[msg.sender]++;
+              emit IncrementCounter(counter, msg.sender);
+          }
+      }`,
+      name: "SimpleCounterUser",
+      optimization: true,
+      runs:200
+
+    })
+    .then((response) => console.log(response.data))
+    .catch((err) => console.log(err));
+}
+verify();
+```
+The contract was verified successfully

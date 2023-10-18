@@ -16,6 +16,7 @@
     "lint:sol": "solhint 'contracts/**/*.sol'",
     "postinstall": "yarn husky install",
     "create-safe": "ts-node src/create-safe.ts",
+    "verify-api": "ts-node src/verify-api.ts",
     "increment-counter": "ts-node src/increment-counter.ts"
   },
   "license": "ISC",
@@ -62,6 +63,7 @@
   },
   "dependencies": {
     "@safe-global/safe-core-sdk-types": "^2.3.0",
+    "axios": "^1.5.1",
     "zkatana-gelato-protocol-kit": "^1.3.1"
   }
 }
