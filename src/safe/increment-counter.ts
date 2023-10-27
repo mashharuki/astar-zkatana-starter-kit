@@ -13,7 +13,7 @@ import * as dotenv from "dotenv";
 
 dotenv.config({ path: ".env" });
 
-import ContractInfo from "../deployments/zKatana/SimpleCounter.json";
+import ContractInfo from "../../deployments/zKatana/SimpleCounter.json";
 
 let RPC_URL = "https://rpc.zkatana.gelato.digital";
 
