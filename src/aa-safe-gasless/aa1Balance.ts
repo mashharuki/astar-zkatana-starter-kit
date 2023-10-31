@@ -30,7 +30,7 @@ const relayPack = new GelatoRelayPack(GELATO_RELAY_API_KEY);
 
 const targetAddress = "0x47A9064a8D242860ABb43FC8340B3680487CC088" 
 
-const nftContract = new ethers.Contract(
+const counterContract = new ethers.Contract(
   targetAddress,
   ContractInfo.abi,
   signer
@@ -39,28 +39,20 @@ const nftContract = new ethers.Contract(
 async function relayTransaction() {
 
   const gasLimit = "10000000";
-  // Create a transaction object
   
-  const safeTransactionData: MetaTransactionData = {
-    to: targetAddress,
-    data: nftContract.interface.encodeFunctionData("increment", []),
-    value: "0",
-    operation: OperationType.Call,
-  };
-  
-
   const safeAccountAbstraction = new AccountAbstraction(signer);
   const sdkConfig: AccountAbstractionConfig = {
     relayPack,
   };
   await safeAccountAbstraction.init(sdkConfig);
 
+  // Create a transaction object
   const txConfig = {
     TO: targetAddress,
-    DATA: safeTransactionData.data,
-    VALUE: "0",
+    DATA:counterContract.interface.encodeFunctionData("increment", []),
     // Options:
     GAS_LIMIT: gasLimit,
+    VALUE:"0"
   };
 
   const predictedSafeAddress = await safeAccountAbstraction.getSafeAddress();

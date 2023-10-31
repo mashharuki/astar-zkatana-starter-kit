@@ -52,27 +52,19 @@ In both examples we are going to `increment()`the counter on this simple contrac
 ### Using 1Balance
 
 ```typescript
-
-  const safeTransactionData: MetaTransactionData = {
-    to: targetAddress,
-    data: nftContract.interface.encodeFunctionData("increment", []),
-    value: "0",
-    operation: OperationType.Call,
-  };
-  
-
-  const safeAccountAbstraction = new AccountAbstraction(signer);
+const safeAccountAbstraction = new AccountAbstraction(signer);
   const sdkConfig: AccountAbstractionConfig = {
     relayPack,
   };
   await safeAccountAbstraction.init(sdkConfig);
 
+  // Create a transaction object
   const txConfig = {
     TO: targetAddress,
-    DATA: safeTransactionData.data,
-    VALUE: "0",
+    DATA:counterContract.interface.encodeFunctionData("increment", []),
     // Options:
     GAS_LIMIT: gasLimit,
+    VALUE:"0"
   };
 
   const predictedSafeAddress = await safeAccountAbstraction.getSafeAddress();
@@ -114,15 +106,7 @@ Remember to fund your Safe as the gas fees will be deducted from your safe balan
 ```typescript
 
   const gasLimit = "10000000";
-
-
-  const safeTransactionData: MetaTransactionData = {
-    to: targetAddress,
-    data: nftContract.interface.encodeFunctionData("increment", []),
-    value: "0",
-    operation: OperationType.Call,
-  };
-
+  
   const safeAccountAbstraction = new AccountAbstraction(signer);
   const sdkConfig: AccountAbstractionConfig = {
     relayPack,
@@ -131,7 +115,7 @@ Remember to fund your Safe as the gas fees will be deducted from your safe balan
 
   const txConfig = {
     TO: targetAddress,
-    DATA: safeTransactionData.data,
+    DATA: counterContract.interface.encodeFunctionData("increment", []),,
     VALUE: "0",
     // Options:
     GAS_LIMIT: gasLimit,
@@ -177,9 +161,6 @@ https://relay.gelato.digital/tasks/status/0x6590f89386d9adb8a6d20ba7dffaa17958d4
 
 We have deployed and verified the the Safe contracts and also we forked the safe sdk to be able to test in ASTAR zKatana. 
 The forked safe-sdk is published under the package  **zkatana-gelato-protocol-kit@1.3.1**. The relay-kit and account.abstraction-kit will be published very soon.
-
-
-
 
 
 
