@@ -44,7 +44,7 @@ As part of the Gelato Raas AA offerings, we have deployed a custom safe-sdk crea
 In the [Raas AA UI starter Kit](https://github.com/gelatodigital/gelato-raas-aa-ui-starter) we showcase how to implement AA with web3Auth for social login, Safe as smart contract wallet and Gelato Relay for Gasless transactions.
 A live demo on zKatana can be seen here:
  [https://raas-ui-starter.web.app/](https://raas-ui-starter.web.app/)
-
+ 
 Here we are going to show the two different ways to send Gasless Transactions through a Safe, either sponsoring the gas with [1Balance](https://docs.gelato.network/developer-services/1balance) or paying with the Safe balance (SyncFee) 
 
 In both examples we are going to `increment()`the counter on this simple contract deployed on zKatana [https://zkatana.blockscout.com/address/0x47A9064a8D242860ABb43FC8340B3680487CC088?tab=read_contract](https://zkatana.blockscout.com/address/0x47A9064a8D242860ABb43FC8340B3680487CC088?tab=read_contract)
