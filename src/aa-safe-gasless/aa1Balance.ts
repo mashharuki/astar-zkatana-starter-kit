@@ -18,7 +18,7 @@ console.log(__dirname);
 
 import ContractInfo from "./ABI.json";
 
-let RPC_URL = "https://rpc.zkatana.gelato.digital"
+let RPC_URL = "https://rpc.zkatana.gelato.digital";
 
 const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 
@@ -28,7 +28,7 @@ const GELATO_RELAY_API_KEY = process.env.GELATO_RELAY_API_KEY;
 
 const relayPack = new GelatoRelayPack(GELATO_RELAY_API_KEY);
 
-const targetAddress = "0x47A9064a8D242860ABb43FC8340B3680487CC088" 
+const targetAddress = "0x47A9064a8D242860ABb43FC8340B3680487CC088";
 
 const counterContract = new ethers.Contract(
   targetAddress,
@@ -36,6 +36,9 @@ const counterContract = new ethers.Contract(
   signer
 );
 
+/**
+ * ガスレスでincrementメソッドを呼び出す。
+ */
 async function relayTransaction() {
 
   const gasLimit = "10000000";
@@ -47,6 +50,7 @@ async function relayTransaction() {
   await safeAccountAbstraction.init(sdkConfig);
 
   // Create a transaction object
+  // increment メソッドを呼び出す
   const txConfig = {
     TO: targetAddress,
     DATA:counterContract.interface.encodeFunctionData("increment", []),
@@ -73,7 +77,7 @@ async function relayTransaction() {
     gasLimit: txConfig.GAS_LIMIT,
     isSponsored: true,
   };
-
+  // トランザクションを呼び出す。(ガスレス)
   const response = await safeAccountAbstraction.relayTransaction(
     safeTransactions,
     options

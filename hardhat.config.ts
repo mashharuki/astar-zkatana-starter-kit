@@ -13,8 +13,6 @@ dotenv.config({ path: __dirname + "/.env" });
 const PK = process.env.PK;
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
 
-// HardhatUserConfig bug
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const config: HardhatUserConfig = {
   // hardhat-deploy
   namedAccounts: {
@@ -22,6 +20,7 @@ const config: HardhatUserConfig = {
       default: 0,
     },
   },
+  // デフォルトのチェーンを指定する。
   defaultNetwork: "zKatana",
 
   networks: {

@@ -231,6 +231,155 @@ The contract was verified successfully
 
 ## 実際に動かした記録
 
+コンパイル
+
+```bash
+yarn compile
+```
+
+```bash
+Generating typings for: 2 artifacts in dir: typechain for target: ethers-v5
+Successfully generated 8 typings!
+Compiled 2 Solidity files successfully
+✨  Done in 4.96s.
+```
+
+テスト
+
+```bash
+yarn test
+```
+
+```bash
+0 passing (0ms)
+
+✨  Done in 5.00s.
+```
+
+デプロイ
+
+```bash
+yarn deploy
+```
+
+デプロイした記録
+
+```bash
+Nothing to compile
+No need to generate any newer typings.
+Deploying SimpleCounter to zKatana. Hit ctrl + c to abort
+reusing "SimpleCounter" at 0x47A9064a8D242860ABb43FC8340B3680487CC088
+Deploying SimpleCounter to zKatana. Hit ctrl + c to abort
+reusing "SimpleCounterUser" at 0x00D76203b92ec96bB46d252e3A30660D6a9bD319
+✨  Done in 3.24s.
+```
+
+[SimpleCounter](https://zkatana.blockscout.com/address/0x47A9064a8D242860ABb43FC8340B3680487CC088)
+
+[SimpleCounterUser](https://zkatana.blockscout.com/address/0x00D76203b92ec96bB46d252e3A30660D6a9bD319?tab=txs)
+
+Verify
+
+```bash
+yarn verify-api
+```
+
+実行結果
+
+```json
+{
+  message: 'OK',
+  result: {
+    ABI: '[{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"newCounterValue","type":"uint256"},{"indexed":false,"internalType":"address","name":"msgSender","type":"address"}],"name":"IncrementCounter","type":"event"},{"inputs":[],"name":"counter","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"increment","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"incrementsByUser","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]',
+    CompilerVersion: 'v0.8.18+commit.87f61d96',
+    ContractName: 'SimpleCounterUser',
+    EVMVersion: 'default',
+    FileName: '',
+    IsProxy: 'false',
+    OptimizationRuns: 200,
+    OptimizationUsed: 'true',
+    SourceCode: '// SPDX-License-Identifier: MIT\n' +
+      '      pragma solidity 0.8.18;\n' +
+      '      \n' +
+      '      contract SimpleCounterUser {\n' +
+      '          uint256 public counter;\n' +
+      '          mapping(address=> uint) public incrementsByUser;\n' +
+      '          event IncrementCounter(uint256 newCounterValue, address msgSender);\n' +
+      '      \n' +
+      '          function increment() external {\n' +
+      '              counter++;\n' +
+      '              incrementsByUser[msg.sender]++;\n' +
+      '              emit IncrementCounter(counter, msg.sender);\n' +
+      '          }\n' +
+      '      }',
+    Address: '0x00d76203b92ec96bb46d252e3a30660d6a9bd319'
+  },
+  status: '1'
+}
+```
+
+Safeウォレットを作成する。
+
+```bash
+yarn create-safe
+```
+
+```bash
+$ ts-node src/safe/create-safe.ts
+Network:  { chainId: 1261120, name: 'unknown' }
+Safe created with address:  0x43C2E83791fF68F6aFC58806aAa497bFa5D36Df7
+✨  Done in 15.65s.
+```
+
+`increment-counter.ts`ファイルのsafeAddressの部分を上記のアドレスに変換すること
+
+Safeウォレット越しにトランザクションを呼び出す
+
+```bash
+yarn increment-counter
+```
+
+実行結果
+
+```bash
+TxHash:  0x64ff1df85d16c4862944023b00f24357d2769e9bb2331766c80ee963a575c2c0
+✨  Done in 14.26s.
+```
+
+[0x64ff1df85d16c4862944023b00f24357d2769e9bb2331766c80ee963a575c2c0](https://zkatana.blockscout.com/tx/0x64ff1df85d16c4862944023b00f24357d2769e9bb2331766c80ee963a575c2c0)
+
+
+ガスレスでincrementメソッドを呼び出す。
+※ ガス代は Gelatoの1Balanceから引かれる。
+
+
+```bash
+yarn aa1Balance
+```
+
+```bash
+{ predictedSafeAddress: '0x43C2E83791fF68F6aFC58806aAa497bFa5D36Df7' }
+{ isSafeDeployed: true }
+https://relay.gelato.digital/tasks/status/0x953212322b62f6cbb4d30b11732544085b6b699d91b3e5216326a0316f2f790c 
+✨  Done in 13.58s.
+```
+
+[0x3bdd75d795c0169fc488827e9b41281ba63255d7df4322670116873acc93aba8](https://zkatana.blockscout.com/tx/0x3bdd75d795c0169fc488827e9b41281ba63255d7df4322670116873acc93aba8)
+
+
+さらに別の呼び出し方
+
+```bash
+yarn aaSyncFee
+```
+
+
+```bash
+{ predictedSafeAddress: '0x43C2E83791fF68F6aFC58806aAa497bFa5D36Df7' }
+{ isSafeDeployed: true }
+https://relay.gelato.digital/tasks/status/0x46d1c90c725b06df8398226a8063878962c9e2b57a6c3d5dd8b4e2670c5de3bb 
+✨  Done in 20.47s.
+```
 
 ### 参考文献
 1. [Gelato relay dashboard](https://app.gelato.network/relay)

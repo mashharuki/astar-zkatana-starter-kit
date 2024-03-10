@@ -16,6 +16,9 @@ let RPC_URL = "https://rpc.zkatana.gelato.digital";
 const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 const signer = new ethers.Wallet(process.env.PK!, provider);
 
+/**
+ * Safe Contractを作成するメソッド
+ */
 async function createSafe() {
   console.log('Network: ',await provider.getNetwork());
 

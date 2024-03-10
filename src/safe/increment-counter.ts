@@ -20,7 +20,7 @@ let RPC_URL = "https://rpc.zkatana.gelato.digital";
 const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 const signer = new ethers.Wallet(process.env.PK!, provider);
 
-let safeAddress = "0x881C6d3319a825643dCf95437FcD34BD67481d8e";
+let safeAddress = "0x43C2E83791fF68F6aFC58806aAa497bFa5D36Df7";
 
 const targetAddress = ContractInfo.address;
 
@@ -31,7 +31,10 @@ const nftContract = new ethers.Contract(
 );
 
 
-
+/**
+ * incrementメソッドを呼び出す。
+ * ガス代あり版
+ */
 async function incrementCounter() {
 
 
