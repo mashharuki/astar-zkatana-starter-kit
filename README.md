@@ -381,5 +381,34 @@ https://relay.gelato.digital/tasks/status/0x46d1c90c725b06df8398226a8063878962c9
 ✨  Done in 20.47s.
 ```
 
+## NFT関連の履歴
+
+デプロイしたNFT
+
+[0x67ADc29278d87D87b212C59fDffd2749fe7418c4](https://zkatana.blockscout.com/address/0x67ADc29278d87D87b212C59fDffd2749fe7418c4)
+
+コントラクトを flattenする
+
+```bash
+yarn flatten:SampleNFT
+```
+
+ガス代ありでNFTをミントする
+
+```bash
+yarn mintNFT
+```
+
+ガスレスでNFTをミントする
+
+```bash
+yarn aaMintNFT
+```
+
+実際に発行したNFT
+
+[0xa0e9f77a3e1311301e5a29aeffda73113ed316e9](https://testnet.rarible.com/token/astarzkevm/0xa0e9f77a3e1311301e5a29aeffda73113ed316e9:0)
+
 ### 参考文献
 1. [Gelato relay dashboard](https://app.gelato.network/relay)
+2. [テストネット版 Rarible](https://testnet.rarible.com/)

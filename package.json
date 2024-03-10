@@ -8,6 +8,7 @@
     "compile": "npx hardhat compile --force",
     "deploy": "npx hardhat deploy",
     "test": "npx hardhat test --network hardhat",
+    "flatten:SampleNFT": "npx hardhat flatten contracts/SampleNFT.sol  > Flattened.sol",
     "format": "prettier --write '*/**/*.*{js,json,md,ts}'",
     "format:check": "prettier --check '*/**/*.*{js,json,md,ts}'",
     "tinker": "npx hardhat run scripts/tinker.ts",
@@ -18,6 +19,9 @@
     "create-safe": "ts-node src/safe/create-safe.ts",
     "increment-counter": "ts-node src/safe/increment-counter.ts",
     "verify-api": "ts-node src/utils/verify-api.ts",
+    "mintNFT": "ts-node src/safe/mintNFT.ts",
+    "verify-nft": "ts-node src/utils/verify-nft.ts",
+    "aaMintNFT": "ts-node src/aa-safe-gasless/aaMintNFT.ts",
     "aa1Balance": "ts-node src/aa-safe-gasless/aa1Balance.ts",
     "aaSyncFee": "ts-node src/aa-safe-gasless/aaSyncFee.ts"
   },
@@ -62,6 +66,7 @@
     "*.*{ts,js}": "eslint -c .eslintrc.json"
   },
   "dependencies": {
+    "@openzeppelin/contracts": "5.0.0",
     "@safe-global/safe-core-sdk-types": "^2.3.0",
     "axios": "^1.5.1",
     "zkatana-gelato-account-abstraction-kit": "^1.3.2",
