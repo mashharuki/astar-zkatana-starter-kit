@@ -1,7 +1,6 @@
 import { HardhatUserConfig } from "hardhat/config";
 
 // PLUGINS
-import "@gelatonetwork/web3-functions-sdk/hardhat-plugin";
 import "@nomicfoundation/hardhat-chai-matchers";
 import "@nomiclabs/hardhat-ethers";
 import "@typechain/hardhat";
@@ -12,18 +11,11 @@ import * as dotenv from "dotenv";
 dotenv.config({ path: __dirname + "/.env" });
 
 const PK = process.env.PK;
-const ALCHEMY_ID = process.env.ALCHEMY_ID;
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
 
 // HardhatUserConfig bug
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const config: HardhatUserConfig = {
-  // web3 functions
-  w3f: {
-    rootDir: "./web3-functions",
-    debug: false,
-    networks: ["hardhat", "mumbai"], //(multiChainProvider) injects provider for these networks
-  },
   // hardhat-deploy
   namedAccounts: {
     deployer: {

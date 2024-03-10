@@ -20,7 +20,6 @@
     "verify-api": "ts-node src/utils/verify-api.ts",
     "aa1Balance": "ts-node src/aa-safe-gasless/aa1Balance.ts",
     "aaSyncFee": "ts-node src/aa-safe-gasless/aaSyncFee.ts"
-   
   },
   "license": "ISC",
   "devDependencies": {
