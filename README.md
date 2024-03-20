@@ -412,3 +412,5 @@ yarn aaMintNFT
 ### 参考文献
 1. [Gelato relay dashboard](https://app.gelato.network/relay)
 2. [テストネット版 Rarible](https://testnet.rarible.com/)
+3. [ERC404について: 仕様の探索とユースケースの検討](https://zenn.dev/senspace/articles/6936b339635db7)
+4. [【ERC404】FTなのか？NFTなのか？｜話題になった新トークン規格「ERC-404」について解説します](https://note.com/zerox_c/n/n125fd28a7543)
