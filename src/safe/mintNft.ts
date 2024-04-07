@@ -15,7 +15,7 @@ dotenv.config({ path: ".env" });
 
 import ContractInfo from "../../deployments/zKatana/SampleNFT.json";
 
-let RPC_URL = "https://rpc.zkatana.gelato.digital";
+let RPC_URL = "https://rpc.startale.com/zkyoto";
 
 const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 const signer = new ethers.Wallet(process.env.PK!, provider);

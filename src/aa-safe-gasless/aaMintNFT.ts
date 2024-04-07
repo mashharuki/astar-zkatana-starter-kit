@@ -18,7 +18,7 @@ console.log(__dirname);
 
 import ContractInfo from "../../deployments/zKatana/SampleNFT.json";
 
-let RPC_URL = "https://rpc.zkatana.gelato.digital";
+let RPC_URL = "https://rpc.startale.com/zkyoto";
 
 const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 

@@ -21,7 +21,7 @@ const config: HardhatUserConfig = {
     },
   },
   // デフォルトのチェーンを指定する。
-  defaultNetwork: "zKatana",
+  defaultNetwork: "zKyoto",
 
   networks: {
     hardhat: {
@@ -30,11 +30,15 @@ const config: HardhatUserConfig = {
         blockNumber: 92,
       },
     },
-
     zKatana: {
       accounts: PK ? [PK] : [],
       chainId: 1261120,
       url: `https://rpc.zkatana.gelato.digital`,
+    },
+    zKyoto: {
+      accounts: PK ? [PK] : [],
+      chainId: 6038361,
+      url: `https://rpc.startale.com/zkyoto`,
     },
   },
 
